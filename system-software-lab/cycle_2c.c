@@ -1,12 +1,19 @@
 // Author : Dhanesh P S
 // Date : 08/09/2020
 
-// Problem Statement : Implement page replacement algorithms -  LRU
+// Problem Statement : Implement page replacement algorithms -  LFU
 
 #include<stdio.h>
 
 #define memorySize 3
 #define pages 8
+
+typedef struct {
+	
+	int pageNo;
+	int frequency;
+	int lastIndex;
+};
 
 int getFreeMemoryIndex(int memory[], int n) {
 
