@@ -54,12 +54,13 @@ void getMemoryStatusLRU(int referenceString[], int n) {
     }
 
     printf("*****LRU*****\n");
-    printf("Memory Status : ");
+    printf("Memory Status :\n");
 
     for(int i = 0; i < n; i++) {
         int currentPage = referenceString[i];
         if(pageTable[currentPage]) {
-            recentlyUsedIndex[currentPage] = i;
+        	printf("%d%d%d\t", memory[0], memory[1], memory[2]);
+		   	recentlyUsedIndex[currentPage] = i;
             continue;
         }
 

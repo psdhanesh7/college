@@ -81,12 +81,13 @@ void getMemoryStatusFIFO(int referenceString[], int n) {
     }
 
     printf("******FIFO******\n");
-    printf("Memory Status : ");
+    printf("Memory Status :\n");
 
     for(int i = 0; i < n; i++) {
         int currentPage = referenceString[i];
-        if(pageTable[currentPage]) {
-            continue;
+        if(pageTable[currentPage]) {	
+        	printf("%d%d%d\t", memory[0], memory[1], memory[2]);
+			continue;
         }
 
         int freeIndex = getFreeMemoryIndex(memory, memorySize);

@@ -1,0 +1,37 @@
+INSERT INTO employee 
+VALUES
+    (66928, "BLAZE", "MANAGER", 55000, 3001),
+    (67832, "CLARE", "MANAGER", 51000, 1001),
+    (65646, "JONAS", "MANAGER", 59140, 2001),
+    (67858, "SCARLET", "ANALYST", 62000, 2001),
+    (69062, "FRANK", "ANALYST", 62000, 2001),
+    (63679, "SANDRINE", "CLERK", 18000, 2001),
+    (64989, "ADELYN", "SALESMAN", 34000, 3001),
+    (65271, "WADE", "SALESMAN", 27000, 3001),
+    (66564, "MADDEN", "SALESMAN", 27000, 3001),
+    (68454, "TUCKER", "SALESMAN", 32000, 3001),
+    (68736, "ADNRES", "CLERK", 24000, 2001),
+    (69000, "JULIUS", "CLERK", 21000, 3001),
+    (69324, "MARKER", "CLERK", 28000, 1001)
+;
+
+DELETE FROM employee
+WHERE emp_no = 68454;
+
+INSERT INTO employee (emp_no, ename, designtion, dept_id)
+VALUES (66667, "MIKKEL", "ANALYST", 2001);
+
+UPDATE employee
+SET salary = 62000
+WHERE emp_no = 66667;
+
+UPDATE employee
+SET salary = 62000, designtion = "ANALYST"
+WHERE ename = "ADELYN";
+
+UPDATE employee
+SET salary = 1.05 * salary
+WHERE dept_id = 2001;
+
+SELECT *FROM employee
+WHERE dept_id = 1001 OR salary < 30000;
