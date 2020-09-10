@@ -5,8 +5,8 @@
 
 #include<stdio.h>
 
-#define memorySize 3
-#define pages 8
+int memorySize;
+int pages;
 
 int getFreeMemoryIndex(int memory[], int n) {
 
@@ -92,8 +92,14 @@ void getMemoryStatusLRU(int referenceString[], int n) {
 int main() {
 
     int referenceString[100];
+	
+	printf("Enter the number of pages: ");
+    scanf("%d", &pages);
+    
+	printf("Enter the number of frames in memory: ");
+	scanf("%d", &memorySize);
 
-    printf("Enter page reference string for a process with 8 pages(String is terminated by -1) : ");
+	printf("Enter page reference string for a process with 8 pages(String is terminated by -1) : ");
 
     int n = 0;
     while(1) {

@@ -26,7 +26,6 @@ void printHeadPointerMovementFIFO(int requestQueue[], int n, int headPointer) {
     }
 
     printf("\nTotal Head Movemeny : %d\n", headMovement);
-
 }
 
 void main() {

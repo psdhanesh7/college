@@ -1,13 +1,13 @@
 
 // Author : Dhanesh P S
-// Date : 27/04/2020
+// Date : 09/09/2020
 
 // Problem Statement : Implement page replacement algorithms - FIFO
 
 #include<stdio.h>
 
-#define memorySize 3
-#define pages 8
+int memorySize;
+int pages;
 
 int q[100], size = 200, front = -1, rear = -1;
 
@@ -115,14 +115,20 @@ void getMemoryStatusFIFO(int referenceString[], int n) {
 
 int main() {
 
-    int referenceString[100];
+	int referenceString[100];
 
-    printf("Enter page reference string for a process with 8 pages(String is terminated by -1) : ");
+	printf("Enter the number of pages: ");
+	scanf("%d", &pages);
 
-    int n = 0;
-    while(1) {
-        int s;
-        scanf("%d", &s);
+	printf("Enter the number of frames in memory: ");
+	scanf("%d", &memorySize);
+
+	printf("Enter page reference string for a process with 8 pages(String is terminated by -1) : ");
+	
+	int n = 0;
+	while(1) {
+		int s;
+		scanf("%d", &s);
 
         if(s == -1) {
             break;

@@ -67,7 +67,6 @@ void printHeadPointerMovementCSCAN(int requestQueue[], int n, int headPointer) {
     }
 
     printf("\nTotal head movement : %d\n", headMovement);
-   
 }
 
 void main() {
