@@ -10,13 +10,14 @@ CREATE TABLE items (
     in_stock INT
 );
 
-INSERT INTO items
+INSERT INTO 
+    items(item_id, item_name, category, price, in_stock)
 VALUES
-    (5, "sony z5 premium", "electronics", 5005, 1),
-    (4, "Samsung Galaxy S4", "electronics", 5005, 1),
-    (3, "One Plus 7", "electronics", 6006, 2),
-    (2, "Iphone X", "electronics", 7007, 6),
-    (1, "Xiomi", "electronics", 1001, 6)
+    (5, 'sony z5 premium', 'electronics', 5005, 1),
+    (4, 'Samsung Galaxy S4', 'electronics', 5005, 1),
+    (3, 'One Plus 7', 'electronics', 6006, 2),
+    (2, 'Iphone X', 'electronics', 7007, 6),
+    (1, 'Xiomi', 'electronics', 1001, 6)
 ;
 
 SELECT * FROM items;
@@ -30,11 +31,11 @@ CREATE TABLE customers (
 
 INSERT INTO customers
 VALUES
-    (111, "elvin", "2020 jai street", "delhi"),
-    (113, "soman", "puthumana", "kerala"),
-    (115, "mickey", "juhu", "maharashtra"),
-    (112, "patrick", "harinagar", "tamilnadu"),
-    (114, "jaise", "kottarakara", "kerala")
+    (111, 'elvin', '2020 jai street', 'delhi'),
+    (113, 'soman', 'puthumana', 'kerala'),
+    (115, 'mickey', 'juhu', 'maharashtra'),
+    (112, 'patrick', 'harinagar', 'tamilnadu'),
+    (114, 'jaise', 'kottarakara', 'kerala')
 ;
 
 SELECT * FROM customers;
@@ -95,11 +96,11 @@ FROM customers NATURAL JOIN delivery;
 
 SELECT cust_name, order_date
 FROM customers NATURAL JOIN orders
-WHERE cust_name LIKE 'J%';
+WHERE cust_name LIKE 'j%';
 
 SELECT item_name, price
 FROM customers NATURAL JOIN orders NATURAL JOIN items
-WHERE cust_name = "Mickey";
+WHERE cust_name = 'mickey';
 
 SELECT DISTINCT cust_id, cust_name, address, state
 FROM customers NATURAL JOIN orders
@@ -116,33 +117,27 @@ WHERE item_id NOT IN (SELECT item_id
 
 SELECT cust_name
 FROM customers NATURAL JOIN orders
-WHERE cust_id IN (SELECT cust_id
-    FROM delivery);
+INTERSECT
+SELECT cust_name
+FROM customers NATURAL JOIN delivery;
 
 SELECT cust_name
 FROM customers NATURAL JOIN orders
-WHERE cust_name NOT IN (SELECT cust_name
-    FROM customers NATURAL JOIN delivery);
-
-Q10 is yet to be done
---------------------------------
-SELECT cust_id
-FROM orders
-GROUP BY cust_id
-ORDER BY COUNT(*) DESC LIMIT 1;
+EXCEPT
+SELECT cust_name
+FROM customers NATURAL JOIN delivery;
 
 
-------------------------------------
+SELECT cust_name
+FROM customers NATURAL JOIN orders
+GROUP BY cust_name
+HAVING COUNT(*) = (
+    SELECT MAX(count) 
+    FROM (SELECT COUNT(*) FROM orders
+        GROUP BY cust_id) AS count
+);
 
-SELECT *
-FROM   
-    customers AS c, 
-    orders AS o, 
-    items AS i
-WHERE 
-    c.cust_id = o.cust_id 
-    AND i.item_id = o.item_id
-    AND i.price > 5000;
+
 
 SELECT cust_id, cust_name, address, state
 FROM customers NATURAL JOIN orders NATURAL JOIN items
@@ -152,7 +147,7 @@ SELECT cust_name, address
 FROM customers
 WHERE cust_id NOT IN (SELECT cust_id
     FROM orders NATURAL JOIN items
-    WHERE item_name = "Samsung Galaxy S4");
+    WHERE item_name = 'Samsung Galaxy S4');
 
 SELECT *
 FROM customers 
