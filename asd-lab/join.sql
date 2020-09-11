@@ -13,7 +13,7 @@ CREATE TABLE items (
 INSERT INTO items
 VALUES
     (5, "sony z5 premium", "electronics", 5005, 1),
-    (4, "Samsung Galaxy S$", "electronics", 5005, 1),
+    (4, "Samsung Galaxy S4", "electronics", 5005, 1),
     (3, "One Plus 7", "electronics", 6006, 2),
     (2, "Iphone X", "electronics", 7007, 6),
     (1, "Xiomi", "electronics", 1001, 6)
@@ -124,45 +124,55 @@ FROM customers NATURAL JOIN orders
 WHERE cust_name NOT IN (SELECT cust_name
     FROM customers NATURAL JOIN delivery);
 
-SELECT cust_name
-FROM 
-
-SELECT COUNT(order_id), cust_id
-FROM orders
-GROUP BY cust_id;
-
-SELECT cust_name 
-FROM customers
-WHERE cust_id IN (
-    SELECT cust_id, MAX(order_count)
-    FROM (SELECT cust_id, COUNT(order_id) AS order_count
-        FROM orders
-        GROUP BY cust_id) AS max_count
-    GROUP BY cust_id;
-);
-
-
-SELECT cust_id, COUNT(order_id) AS order_count
-FROM orders
-GROUP BY cust_id;
-
-SELECT cust_id, COUNT(order_id) AS order_count
+Q10 is yet to be done
+--------------------------------
+SELECT cust_id
 FROM orders
 GROUP BY cust_id
-WHERE order_count = 2;
-
-SELECT MAX(order_count)
-FROM (SELECT cust_id, COUNT(order_id) AS order_count
-    FROM orders
-    GROUP BY cust_id) AS order_count;
-
-SELECT cust_id, MAX(item_id)
-FROM orders
-GROUP BY cust_id;
+ORDER BY COUNT(*) DESC LIMIT 1;
 
 
+------------------------------------
+
+SELECT *
+FROM   
+    customers AS c, 
+    orders AS o, 
+    items AS i
+WHERE 
+    c.cust_id = o.cust_id 
+    AND i.item_id = o.item_id
+    AND i.price > 5000;
+
+SELECT cust_id, cust_name, address, state
+FROM customers NATURAL JOIN orders NATURAL JOIN items
+WHERE price > 5000;
+
+SELECT cust_name, address
+FROM customers
+WHERE cust_id NOT IN (SELECT cust_id
+    FROM orders NATURAL JOIN items
+    WHERE item_name = "Samsung Galaxy S4");
+
+SELECT *
+FROM customers 
+LEFT JOIN orders
+ON customers.cust_id = orders.cust_id;
+
+SELECT *
+FROM customers 
+RIGHT JOIN orders
+ON customers.cust_id = orders.cust_id;
+
+// Q14 is not clear
+-------------------------------
+SELECT cust_id
+FROM customers
+GROUP BY state;
+-------------------------------
+
+// Q15 is not clear
+--------------------------------
 
 
-
-
-
+-------------------------------
