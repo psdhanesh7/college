@@ -1,8 +1,8 @@
 #include<stdio.h>
 
-#define resources 3
+int resources;
 
-int getNextPossibleProcess(int required[][resources], int available[], int completed[], int n) {
+int getNextPossibleProcess(int required[][10], int available[], int completed[], int n) {
 
 	int process = -1;
 
@@ -30,16 +30,24 @@ int getNextPossibleProcess(int required[][resources], int available[], int compl
 void main() {
 
 	int n; // Number of processes
-	int allocation[10][resources], max[10][resources], required[10][resources];
-	int totalResource[] = {10, 5, 7};
-	int available[resources];
+	int allocation[10][10], max[10][10], required[10][10];
+	int totalResource[10];
+	int available[10];
 	int completed[10];
 	int safeSequence[10];
 
+	
+	printf("Enter the number of resources: ");
+	scanf("%d", &resources);
+	
+	printf("Enter total no. of instances of resource :\n");
 	for(int i = 0; i < resources; i++) {
-		available[i] = totalResource[i];
-	}
+		printf("R%d : ", i+1);
+		scanf("%d", &totalResource[i]);
 
+		available[i] = totalResource[i];		
+	}
+	
 	printf("Enter the number of process : ");
 	scanf("%d", &n);
 
