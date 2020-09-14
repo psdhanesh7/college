@@ -61,8 +61,6 @@ VALUES
     (4, 4, 3, '2014-12-22', 114)
 ;
 
-INSERT INTO orders 
-VALUES (5, 3, 2, '2014-10-11', 111);
 
 SELECT * FROM orders;
 
@@ -161,13 +159,18 @@ ON customers.cust_id = orders.cust_id;
 
 // Q14 is not clear
 -------------------------------
-SELECT cust_id
+SELECT COUNT(*)
 FROM customers
 GROUP BY state;
 -------------------------------
 
 // Q15 is not clear
 --------------------------------
-
+SELECT * 
+FROM items t
+WHERE
+    price > (SELECT AVG(price)
+        FROM items
+        GROUP BY t.category);
 
 -------------------------------
