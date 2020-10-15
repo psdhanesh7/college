@@ -1,0 +1,12 @@
+1000 - START 1000
+1000 FIRST LDA ALPHA
+1003 - ADD BETA
+1006 - STA GAMA
+1009 ALPHA WORD 5
+100C BETA WORD 10
+100F ALPHA WORD 2
+***ERROR: Label ALPHA is defined multiple times***
+1012 BETA RESW 4
+***ERROR: Label BETA is defined multiple times***
+101E GAMA RESW 1
+Length of the program: 21
