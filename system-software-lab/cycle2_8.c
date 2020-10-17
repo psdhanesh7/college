@@ -18,7 +18,6 @@ typedef struct node {
 node* symtab[capacity];
 node* optab[capacity];
 
-
 // ----------------------------------------------------------
 // Implementation of hash table using chaining
 
@@ -74,7 +73,7 @@ void displayChain(node *header) {
 
 	node *ptr = header;
 	while(ptr != NULL) {
-		printf("%s\t%X\n", ptr->data.key, ptr->data.value);
+		printf("%s\t%02X\n", ptr->data.key, ptr->data.value);
 		ptr = ptr->next;
 	}	
 }
@@ -195,6 +194,7 @@ void assembleCode(char* filename) {
 		splitLine(line, label, opcode, operand);
 		
 		if(strcmp(opcode, "END") == 0) {
+			fprintf(fp2, "- - %s %s\n", opcode, operand);
 			break;
 		}
 
@@ -221,6 +221,7 @@ void assembleCode(char* filename) {
 		else if(strcmp(opcode, "RESW") == 0) {
 			int memorySize;
 			sscanf(operand, "%d", &memorySize);
+			
 			locctr += (3 * memorySize);
 		}
 		else if(strcmp(opcode, "RESB") == 0) {
@@ -240,7 +241,7 @@ void assembleCode(char* filename) {
 		}
 	}
 
-	fprintf(fp2, "Length of the program: %x\n", locctr - startingAddress);
+	fprintf(fp2, "Length of the program: %X\n", locctr - startingAddress);
 	
 	fclose(fp1);
 	fclose(fp2);
