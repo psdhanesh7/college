@@ -204,16 +204,3 @@ void main() {
 	
 	clearHashTable(symtab);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
