@@ -39,6 +39,8 @@ void chaining(node* hashArray[], char key[], int value, int hashCode) {
 	printf("Symbol inserted successfully\n");
 }
 
+// hash[hashCode] -> 4 ->  1 -> 2 -> 3 -> NULL
+
 void insert(node* hashArray[], char key[], int value) {
 	
 	int hashCode = hash(key);

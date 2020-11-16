@@ -92,10 +92,7 @@ void getMemoryStatusLRU(int referenceString[], int n) {
 int main() {
 
     int referenceString[100];
-	
-	printf("Enter the number of pages: ");
-    scanf("%d", &pages);
-    
+	   
 	printf("Enter the number of frames in memory: ");
 	scanf("%d", &memorySize);
 
